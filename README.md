@@ -2,7 +2,7 @@
 
 A local-first writing assistant for paraphrasing and humanizing your own drafts. ReWordly runs models on your own computer through [Ollama](https://ollama.com), or uses Google Gemini with your own API key. Every change is shown word by word, so you can see exactly what the model altered.
 
-**Live demo:** https://rewordly-humanizer-a93p-9ksow85og-virappan-ops-projects.vercel.app/
+**Live demo:** https://re-wordly-flame.vercel.app/
 
 > **Note:** The live demo is for testing the interface only. The Humanizer model is not hosted there. To get real Humanizer results, download the model and run ReWordly locally with Ollama, as described in [Optional: the Humanizer model](#optional-the-humanizer-model) below.
 
