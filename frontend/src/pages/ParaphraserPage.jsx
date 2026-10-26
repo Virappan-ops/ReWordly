@@ -13,6 +13,8 @@ import {
   DropdownMenuRadioItem,
 } from "@/components/ui/dropdown-menu";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+
 const MODES = { paraphraser: "Paraphraser", humanizer: "Humanizer" };
 const PROVIDERS = { ollama: "Ollama (Local)", gemini: "Google Gemini" };
 const TONES = { neutral: "Neutral", formal: "Formal", casual: "Casual" };
@@ -250,7 +252,7 @@ export default function ParaphraserPage({
       return;
     }
     try {
-      const resp = await fetch("/api/diff", {
+      const resp = await fetch(`${API_BASE_URL}/api/diff`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ source: nextSource, target: nextTarget }),
@@ -289,7 +291,7 @@ export default function ParaphraserPage({
     setSynonymPanelOpen(false);
 
     try {
-      const response = await fetch("/api/rewrite", {
+      const response = await fetch(`${API_BASE_URL}/api/rewrite`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -338,7 +340,7 @@ export default function ParaphraserPage({
     setSynonymLoading(true);
     setCandidates([]);
     try {
-      const response = await fetch("/api/synonyms", {
+      const response = await fetch(`${API_BASE_URL}/api/synonyms`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
