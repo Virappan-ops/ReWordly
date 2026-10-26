@@ -6,6 +6,8 @@ from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
+from fastapi.middleware.cors import CORSMiddleware
+
 from app.config import Config
 from app.diffing import compute_word_diff
 from app.errors import (
@@ -27,6 +29,15 @@ from app.splitter import split_sentences
 FRONTEND_DIR = Path(__file__).resolve().parent.parent / "frontend"
 
 app = FastAPI(title="Rewordly", version="1.0.0")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins (or you can specify your exact Vercel URL)
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods (GET, POST, OPTIONS, etc.)
+    allow_headers=["*"],  # Allows all headers
+)
+
 app.add_exception_handler(RewordlyError, rewordly_error_handler)
 
 
