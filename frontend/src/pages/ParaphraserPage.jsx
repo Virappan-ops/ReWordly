@@ -328,10 +328,12 @@ export default function ParaphraserPage({
 
       return true;
     } catch {
-      toast.warning(
-        "The selected provider is unavailable. Check that it is running and try again.",
-        { position: "top-center", duration: 4500 }
-      );
+      const warningMsg =
+        provider === "ollama"
+          ? "Ollama runs locally and is unavailable on cloud deployment. Please switch to Google Gemini or check README.md."
+          : "The selected provider is unavailable. Check that it is running and try again.";
+
+      toast.warning(warningMsg, { position: "top-center", duration: 5000 });
       return false;
     }
   };
